@@ -1,0 +1,64 @@
+
+# 2.Create a list of 1000 random integers between 1 and 100000, then calculate the Z-Score to check for the outliers. Consider values Z-Score > 2 as outliers 
+import pandas as pd
+from scipy import stats
+
+# Read the CSV file into a pandas DataFrame
+df = pd.read_csv('water.csv')
+
+# Extract the column for which you want to calculate the z-scores
+column_name = 'pH'  # Replace 'Column1' with the actual column name from your CSV file
+data = df[column_name]
+
+# Calculate the z-scores
+z_scores = stats.zscore(data)
+
+# Print the z-scores
+print("Z-scores:")
+for z_score in z_scores:
+    print(z_score)
+
+
+# 3.Create a list of 10 random integers between 1 and 100. - Standardize the numbers  - Normalize the numbers 
+
+import random
+import numpy as np
+
+# Generate a list of 10 random integers between 1 and 100
+random_integers = [random.randint(1, 100) for _ in range(10)]
+print("Original List:", random_integers)
+
+# Standardize the numbers
+mean = np.mean(random_integers)
+std = np.std(random_integers)
+standardized_numbers = [(x - mean) / std for x in random_integers]
+print("Standardized List:", standardized_numbers)
+
+# Normalize the numbers
+min_val = min(random_integers)
+max_val = max(random_integers)
+normalized_numbers = [(x - min_val) / (max_val - min_val) for x in random_integers]
+print("Normalized List:", normalized_numbers)
+
+
+# 4.Draw visualization of the data using different
+
+import pandas as pd
+import matplotlib.pyplot as plt
+ 
+ 
+# reading the database
+data = pd.read_csv("water.csv")
+ 
+# Scatter plot with day against tip
+plt.plot(data['Dissolved Oxygen (mg/L)'])
+plt.plot(data['pH'])
+ 
+# Adding Title to the Plot
+plt.title("Scatter Plot")
+ 
+# Setting the X and Y labels
+plt.xlabel('Dissolved Oxygen (mg/L)')
+plt.ylabel('pH')
+ 
+plt.show()
